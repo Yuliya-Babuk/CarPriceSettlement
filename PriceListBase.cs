@@ -5,13 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CarPriceSettlement
+
+    //set price for base complection
 {
-    //set price for optima complection
-    class Price_List_ForOptima: IPrice_List
+    public class PriceListBase: IPriceList
     {
-        public override double SetPrice(Car car)
+        
+        public Car Car { get; set; }
+
+        public double SetPrice()
         {
-            return base.SetPrice(car);
+            return 100;
         }
     }
 }

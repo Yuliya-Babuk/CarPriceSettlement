@@ -6,9 +6,27 @@ namespace CarPriceSettlement
     {
         static void Main(string[] args)
         {
-            var car = new Car ();
-            var price_list = new IPrice_List();
-            var priceForBaseComplection = price_list.SetPrice(car);                        
+
+            var carOptima = new Car("Audi", "black", "auto", "2020", Complection.Optima);
+            var carLux = new Car("Audi", "black", "auto", "2020", Complection.Lux);
+            Console.WriteLine(GetPrice(carOptima).ToString()+"\n" + GetPrice(carLux).ToString());
+            
+            string GetPrice(Car car)
+            {
+                switch (car.Complection)
+                {
+                    case Complection.Base:
+
+                        return $"price for {car.Complection} is {(new PriceListBase()).SetPrice()}";
+                    case Complection.Optima:
+                        return $"price for {car.Complection} is {(new PriceListForOptima(new PriceListBase())).SetPrice()}";
+                    case Complection.Lux:
+                        return $"price for {car.Complection} is {(new PriceListForLux(new PriceListBase())).SetPrice()}";
+                    default:
+                        return $"price can not be set";
+                }
+            }
+          
         }
     }
 }
